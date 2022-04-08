@@ -17,9 +17,7 @@ public class Cafe {
 
 	public Cafe(double saldo) {
 		super();
-		if (this.saldo < 0) {
-			this.saldo = saldo;
-		}
+		this.setSaldo(saldo);
 		this.cafe = Cafe.TOTALCAFE;
 		this.leche = Cafe.TOTALECHE;
 		this.vasos = Cafe.TOTALVASOS;
@@ -32,7 +30,9 @@ public class Cafe {
 	}
 
 	public void setSaldo(double saldo) {
-		this.saldo = saldo;
+		if (saldo > 0) {
+			this.saldo = saldo;
+		}
 	}
 
 	public int getCafe() {
@@ -77,7 +77,7 @@ public class Cafe {
 	public String servirLecheSola(double cantidad) {
 		String mensaje;
 		double vuelta;
-		if (cantidad < this.saldo - this.PRECIOLECHE) {
+		if (cantidad - this.PRECIOLECHE > this.saldo) {
 			mensaje = "No dispone de saldo suficiente";
 		} else if (this.vasos <= 0 || this.leche <= 0) {
 			mensaje = "No quedan existencias";
@@ -96,11 +96,11 @@ public class Cafe {
 	public String servirCafeConLeche(double cantidad) {
 		String mensaje;
 		double vuelta;
-		if (cantidad < this.saldo - this.PRECIOCAFECONLECHE) {
+		if (cantidad - this.PRECIOCAFECONLECHE > this.saldo) {
 			mensaje = "No dispone de saldo suficiente";
 		} else if (this.vasos <= 0 || this.leche <= 0 || this.cafe < 0) {
 			mensaje = "No quedan existencias";
-		} else if (cantidad < this.PRECIOCAFE) {
+		} else if (cantidad < this.PRECIOCAFECONLECHE) {
 			mensaje = "Introduzca la cantidad correcta que se le pide";
 		} else {
 			this.leche--;

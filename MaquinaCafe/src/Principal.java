@@ -8,51 +8,52 @@ public class Principal {
 		
 		//Declaramos el objeto
 		Cafe maquina1=new Cafe(20);
-
-		char opcion;
+		
+		int opcion;
 		double cantidad=0;
 		
 		String menu=menu();
 		System.out.println("Bienvenido a tu maquina de cafe de confianza");
 		System.out.println(menu());
 		System.out.println("Elija una opcion");
-		opcion=teclado.nextLine().charAt(0);
+		opcion=Integer.parseInt(teclado.nextLine());
 		
 		while (opcion != 5) {
 			switch (opcion) {
-			case '1':{
+			case 1:
 				System.out.println("Introduce una cantidad");
 				cantidad=Double.parseDouble(teclado.nextLine());
 				System.out.println(maquina1.servirCafeSolo(cantidad));
-			}
+			
 			break;
-			case '2':{
+			case 2:
 				System.out.println("Introduce una cantidad");
 				cantidad=Double.parseDouble(teclado.nextLine());
 				System.out.println(maquina1.servirLecheSola(cantidad));
-			}
+			
 			break;
-			case '3':{
+			case 3:
 				System.out.println("Introduce una cantidad");
 				cantidad=Double.parseDouble(teclado.nextLine());
 				System.out.println(maquina1.servirCafeConLeche(cantidad));
-			}
+			
 			break;
-			case '4':{
+			case  4:
 				System.out.println(maquina1.toString());
-			}
+			
 			break;
-			case '5':{
+			case 5:
 				System.out.println("Apagar y salir");
-			}
+			
 			break;
 			default:
 				System.out.println("Error");
-			}
+			
 			System.out.println(menu());
 			System.out.println("Elija una opcion");
 			opcion=teclado.nextLine().charAt(0);
 			}
+		}
 		}
 
 	
