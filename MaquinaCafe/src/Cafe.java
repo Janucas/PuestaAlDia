@@ -55,28 +55,35 @@ public class Cafe {
 		this.vasos = this.TOTALVASOS;
 	}
 
-	public String servirCafeSolo(double cantidad) {
+	public String servirCafeSolo(double cantidad) throws MaquinaException {
 		String mensaje;
 		double vuelta;
-		if (cantidad - this.PRECIOCAFE > this.saldo) {
-			mensaje = "No dispone de saldo suficiente";
-		} else if (this.vasos <= 0 || this.cafe <= 0) {
-			mensaje = "No quedan existencias";
-		} else if (cantidad < this.PRECIOCAFE) {
-			mensaje = "Introduzca la cantidad correcta que se le pide";
+		if (cantidad <= 0) {
+			throw new MaquinaException("Error");
 		} else {
-			this.cafe--;
-			this.vasos--;
-			this.saldo += this.PRECIOCAFE;
-			vuelta = cantidad - this.PRECIOCAFE;
-			mensaje = "Aqui tiene su cafe, gracias por su visita.\n" + "Su vuelta es de: " + vuelta;
+			if (cantidad - this.PRECIOCAFE > this.saldo) {
+				mensaje = "No dispone de saldo suficiente";
+			} else if (this.vasos <= 0 || this.cafe <= 0) {
+				mensaje = "No quedan existencias";
+			} else if (cantidad < this.PRECIOCAFE) {
+				mensaje = "Introduzca la cantidad correcta que se le pide";
+			} else {
+				this.cafe--;
+				this.vasos--;
+				this.saldo += this.PRECIOCAFE;
+				vuelta = cantidad - this.PRECIOCAFE;
+				mensaje = "Aqui tiene su cafe, gracias por su visita.\n" + "Su vuelta es de: " + vuelta;
+			}
 		}
 		return mensaje;
 	}
 
-	public String servirLecheSola(double cantidad) {
+	public String servirLecheSola(double cantidad) throws MaquinaException {
 		String mensaje;
 		double vuelta;
+		if (cantidad<=0) {
+			throw new MaquinaException("Error, el saldo debe ser positivo");
+		}
 		if (cantidad - this.PRECIOLECHE > this.saldo) {
 			mensaje = "No dispone de saldo suficiente";
 		} else if (this.vasos <= 0 || this.leche <= 0) {
@@ -93,9 +100,12 @@ public class Cafe {
 		return mensaje;
 	}
 
-	public String servirCafeConLeche(double cantidad) {
+	public String servirCafeConLeche(double cantidad) throws MaquinaException {
 		String mensaje;
 		double vuelta;
+		if (cantidad<=0) {
+			throw new MaquinaException("Error, el saldo debe ser positivo o superior a 0");
+		}
 		if (cantidad - this.PRECIOCAFECONLECHE > this.saldo) {
 			mensaje = "No dispone de saldo suficiente";
 		} else if (this.vasos <= 0 || this.leche <= 0 || this.cafe < 0) {
@@ -113,11 +123,9 @@ public class Cafe {
 		return mensaje;
 	}
 
-	
 	@Override
 	public String toString() {
 		return "Cafe [cafe=" + cafe + ", leche=" + leche + ", vasos=" + vasos + ", saldo=" + saldo + "]";
 	}
 
-	
 }
