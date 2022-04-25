@@ -1,13 +1,18 @@
+import java.util.Objects;
 
 public class RectanguloCodigo {
-	double longitud = 1;
-	double ancho = 1;
+	private double longitud = 1;
+	private double ancho = 1;
 
 	// Creamos el constructor principal
-	public RectanguloCodigo() {
+	public RectanguloCodigo(int longitud, int ancho) {
 		super();
 		this.longitud = longitud;
 		this.ancho = ancho;
+
+	}
+	public RectanguloCodigo() {
+		
 	}
 	// Creamos los metodos getter y setter
 
@@ -48,5 +53,32 @@ public class RectanguloCodigo {
 		double resultado = this.ancho * this.longitud;
 		return resultado;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "RectanguloCodigo [longitud=" + longitud + ", ancho=" + ancho + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(ancho, longitud);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RectanguloCodigo other = (RectanguloCodigo) obj;
+		return Double.doubleToLongBits(ancho) == Double.doubleToLongBits(other.ancho)
+				&& Double.doubleToLongBits(longitud) == Double.doubleToLongBits(other.longitud);
+	}
+	
+	
 
 }
