@@ -7,8 +7,8 @@ public class RectanguloCodigo {
 	// Creamos el constructor principal
 	public RectanguloCodigo(int longitud, int ancho) {
 		super();
-		this.longitud = longitud;
-		this.ancho = ancho;
+		this.setLongitud(longitud);
+		this.setAncho(ancho);
 
 	}
 	public RectanguloCodigo() {
